@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'green',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 30,
-        height: 30,
+        width: 50,
+        height: 50,
     },
 });
 

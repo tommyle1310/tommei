@@ -1,7 +1,7 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContentComponentProps } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeScreen from '../screens/HomeScreen';
@@ -10,10 +10,11 @@ import SettingsScreen from '../screens/SettingsScreen';
 import Login from '../screens/Auth/Login';
 import Signup from '../screens/Auth/Signup';
 
-import { StackParamList, DrawerParamList, BottomTabParamList, TopTabParamList } from '../navigation/types';
+import { StackParamList, BottomTabParamList, TopTabParamList } from '../navigation/types';
+import { DrawerNavigator } from './Drawer';
+
 
 const Stack = createStackNavigator<StackParamList>();
-const Drawer = createDrawerNavigator<DrawerParamList>();
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const TopTab = createMaterialTopTabNavigator<TopTabParamList>();
 
@@ -35,20 +36,9 @@ function BottomTabs() {
     );
 }
 
-function DrawerNavigator() {
-    return (
-        <Drawer.Navigator>
-            <Drawer.Screen
-                name="Home" component={HomeScreen}
-                options={{ headerShown: false }}
-            />
-            <Drawer.Screen
-                name="Settings" component={SettingsScreen}
-                options={{ headerShown: false }}
-            />
-        </Drawer.Navigator>
-    );
-}
+
+
+
 
 function AuthNavigator() {
     return (
