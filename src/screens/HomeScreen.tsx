@@ -7,18 +7,18 @@ import MainWrapper from './Wrapper/MainWrapper';
 import DrawerIcon from '../components/DrawerIcon';
 import { Button } from '@ui-kitten/components';
 import { useTheme } from '../hooks/useTheme';
+import TText from '../components/theme/TText';
 
 // Define the type of navigation prop for this screen
 type Props = DrawerScreenProps<DrawerParamList, 'Home'>;
 
 const HomeScreen: React.FC<Props> = ({ navigation }) => {
-    const { themeStyle } = useTheme(); // Use the custom hook
 
     return (
         <MainWrapper>
             <DrawerIcon navigation={navigation}>
             </DrawerIcon>
-            <Text style={[styles.text, themeStyle]}>Home Screen</Text>
+            <TText style={styles.text} title='Home Screen' />
         </MainWrapper>
     );
 };

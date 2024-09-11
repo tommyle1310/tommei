@@ -4,10 +4,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import AppNavigator from './src/navigation/Navigators';
 import * as eva from '@eva-design/eva';
-import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
+import { ApplicationProvider, IconRegistry, Layout, Text } from '@ui-kitten/components';
 import { default as themeApp } from './custom-theme.json';
 import { ThemeContext } from './theme-context';
-
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
 export default function App() {
 
@@ -16,11 +16,11 @@ export default function App() {
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(nextTheme);
-    console.log('thmee', theme)
   };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={theme === 'light' ? { ...eva.light, ...themeApp } : { ...eva.dark, ...themeApp }}>
 
         <SafeAreaProvider>

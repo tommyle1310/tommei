@@ -1,7 +1,7 @@
 import { createDrawerNavigator, DrawerContentComponentProps } from "@react-navigation/drawer";
 import MainWrapper from "../screens/Wrapper/MainWrapper";
 import { Pressable, Text } from "react-native";
-import ToggleTheme from "../components/ToggleTheme";
+import ToggleTheme from "../components/ToggleThemeBtn";
 import { useTheme } from "../hooks/useTheme";
 import { DrawerParamList } from "./types";
 import HomeScreen from "../screens/HomeScreen";

@@ -15,6 +15,7 @@ const ToggleTheme = (): React.ReactElement => {
     return (
         <Toggle
             status='success'
+            appearance='default'
             checked={checked}
             onChange={onCheckedChange}
         >

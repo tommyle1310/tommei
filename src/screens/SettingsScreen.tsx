@@ -5,17 +5,19 @@ import { DrawerScreenProps } from '@react-navigation/drawer';
 import { DrawerParamList } from '../navigation/types';
 import MainWrapper from './Wrapper/MainWrapper';
 import DrawerIcon from '../components/DrawerIcon';
+import { useTheme } from '../hooks/useTheme';
+import TText from '../components/theme/TText';
 
 // Define the type of navigation prop for this screen
 type Props = DrawerScreenProps<DrawerParamList, 'Settings'>;
 
 const SettingsScreen: React.FC<Props> = ({ navigation }) => {
+
     return (
         <MainWrapper>
-
             <DrawerIcon navigation={navigation}>
             </DrawerIcon>
-            <Text style={styles.text}>Setting</Text>
+            <TText style={styles.text} title='Setting Screen' />
         </MainWrapper>
     );
 };
