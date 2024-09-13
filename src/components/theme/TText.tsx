@@ -1,8 +1,8 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 import { useTheme } from '../../hooks/useTheme';
+import { Text } from '@ui-kitten/components';
 
-const TText = ({ title, style, isBtnText }: { title: string, style?: object, isBtnText?: boolean }) => {
+const TText = ({ title, style, isBtnText, }: { title: string, style?: object, isBtnText?: boolean, }) => {
     const { themeStyle, theme } = useTheme(); // Use the custom hook
 
     return (

@@ -1,33 +1,83 @@
 // src/screens/HomeScreen.tsx
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Pressable, FlatList } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { DrawerParamList } from '../navigation/types';
 import MainWrapper from './Wrapper/MainWrapper';
 import DrawerIcon from '../components/DrawerIcon';
-import { Button } from '@ui-kitten/components';
-import { useTheme } from '../hooks/useTheme';
+import { Button, Icon, useTheme as useThemeApp } from '@ui-kitten/components';
 import TText from '../components/theme/TText';
+import { commonStyle } from '../utils/styles/commonStyles';
+import TInput from '../components/theme/TInput';
+import TPrimaryBtn from '../components/theme/TPrimaryBtn';
+import { useTheme } from '../hooks/useTheme';
+import HorizontalList from '../components/HorizontalList';
+import Carosel from '../components/Carosel';
 
 // Define the type of navigation prop for this screen
 type Props = DrawerScreenProps<DrawerParamList, 'Home'>;
 
 const HomeScreen: React.FC<Props> = ({ navigation }) => {
-
+    const themeApp = useThemeApp()
+    const { theme } = useTheme()
+    const [selectedTagId, setSelectedTagId] = useState('2')
     return (
         <MainWrapper>
             <DrawerIcon navigation={navigation}>
             </DrawerIcon>
-            <TText style={styles.text} title='Home Screen' />
-        </MainWrapper>
+
+
+            {/* discover */}
+            <View style={{ gap: 20, flexDirection: 'column', flex: 1 }}>
+                <View style={[commonStyle.jb]}>
+                    <TText title='Discover' style={{ ...commonStyle.headerTitle, fontWeight: 700 }} />
+                    <Icon
+                        style={commonStyle.icon}
+                        fill={themeApp['color-primary-default']}
+                        name='bell-outline'
+                    />
+                </View>
+
+                <View style={[commonStyle.ic, { gap: 8 }]}>
+                    <TInput style={{ flex: 1 }} placeholder='Search for clothes...' onChangeText={() => { }} value={''} />
+                    <TPrimaryBtn onTap={() => { }} title='congif' />
+                </View>
+                <HorizontalList selectedId={selectedTagId} />
+                <View style={{ flex: 1, gap: 14 }}>
+                    {/* all featured title */}
+                    <View style={[commonStyle.jb, commonStyle.ic]}>
+                        <TText title='All featured' style={commonStyle.h1} />
+                        <View style={[commonStyle.ic, { gap: 10 }]}>
+                            <Button status='basic' appearance='outline' accessoryRight={<Icon name='bell-outline' />} size='small'>Sort</Button>
+                            <Button status='basic' appearance='outline' accessoryRight={<Icon name='funnel-outline' />} size='small'>Filter</Button>
+                        </View>
+                    </View>
+                    {/* carosel */}
+                    <Carosel />
+                    {/* deal of the day */}
+                    <View style={[commonStyle.ic, commonStyle.jb, { padding: 10, backgroundColor: themeApp['color-info-default'], borderRadius: 12 }]}>
+                        <View style={{ gap: 10 }}>
+                            <TText style={{ fontSize: 18, fontWeight: 700, backgroundColor: 'transparent' }} title='Deal of the day' />
+                            <View style={[commonStyle.ic, { gap: 5 }]}>
+                                <Icon fill='#fff' style={{ width: 20, height: 20 }} name='clock-outline' />
+                                <TText style={{ fontSize: 12, backgroundColor: 'transparent' }} title='22h 59m 20s remaining' />
+                            </View>
+                        </View>
+
+                        <Button accessoryRight={<Icon name='arrow-forward-outline' />} size='small' appearance='outline' status='control'>View All</Button>
+
+                    </View>
+                </View>
+            </View>
+
+
+        </MainWrapper >
     );
 };
 
 const styles = StyleSheet.create({
-    text: {
-        fontSize: 24,
-        marginBottom: 20,
-    },
-});
+
+})
+
 
 export default HomeScreen;

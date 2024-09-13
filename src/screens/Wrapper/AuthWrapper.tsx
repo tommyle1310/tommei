@@ -1,7 +1,7 @@
 // src/screens/Auth/AuthWrapper.tsx
 import React, { useMemo } from 'react';
 import { View, StyleSheet, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform, Pressable } from 'react-native';
-import { Button, Divider, Icon } from '@ui-kitten/components';
+import { Button, Divider, Icon, useTheme as useThemeApp } from '@ui-kitten/components';
 import { useTheme } from '../../hooks/useTheme';
 import TText from '../../components/theme/TText';
 import TInput from '../../components/theme/TInput';
@@ -34,6 +34,8 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({
     emailError, passwordError, fullNameError
 }) => {
     const { themeStyle, theme } = useTheme();
+    const themeApp = useThemeApp()
+
 
     const Content = useMemo(() => (
         <View style={[styles.container, themeStyle, { flex: 1 }]}>
@@ -41,6 +43,15 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({
                 <View style={styles.titleContainer}>
                     <TText style={styles.mainTitle} title={title} />
                     <TText style={styles.subTitle} title={subTitle} />
+                </View>
+                <View style={styles.formControl}>
+                    <TInput
+                        value={email}
+                        onChangeText={setEmail}
+                        label="Email"
+                        placeholder="Enter your email address"
+                        error={emailError}
+                    />
                 </View>
                 {btn.title === 'Sign Up' && (
                     <View style={styles.formControl}>
@@ -55,15 +66,6 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({
                 )}
                 <View style={styles.formControl}>
                     <TInput
-                        value={email}
-                        onChangeText={setEmail}
-                        label="Email"
-                        placeholder="Enter your email address"
-                        error={emailError}
-                    />
-                </View>
-                <View style={styles.formControl}>
-                    <TInput
                         value={password}
                         onChangeText={setPassword}
                         label="Password"
@@ -73,7 +75,7 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({
                     />
                 </View>
                 <TPrimaryBtn onTap={btn.onTap} title={btn.title} />
-                <Divider style={{ backgroundColor: theme['color-info-default'], marginVertical: 20 }} />
+                <Divider style={{ backgroundColor: themeApp['color-info-default'], marginVertical: 20 }} />
                 <View style={styles.otherLogin}>
                     <Button
                         accessoryLeft={(props) => <Icon {...props} name="google" />}

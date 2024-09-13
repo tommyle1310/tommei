@@ -31,31 +31,31 @@ const Login: React.FC<Props> = ({ navigation }) => {
         // Navigate to the BottomTabs screen
         const response = validateLogin({ email, password })
         const { EC, EM } = response
-        switch (EC) {
-            case 0:
-                setPasswordError(initialResponse.EM);
-                setEmailError(initialResponse.EM);
-                setFullNameError(initialResponse.EM);
-                setEmail('')
-                setPassword('')
-                setFullName('')
-                navigation.navigate('BottomTabs');
-                return
-            case 11:
-                setEmailError(EM);
-                return;
-            case 12:
-                setEmailError(EM);
-                return;
-            case 13:
-                setEmailError(initialResponse.EM)
-                setPasswordError(EM);
-                return;
-            default:
-                return
-        }
+        // switch (EC) {
+        //     case 0:
+        //         setPasswordError(initialResponse.EM);
+        //         setEmailError(initialResponse.EM);
+        //         setFullNameError(initialResponse.EM);
+        //         setEmail('')
+        //         setPassword('')
+        //         setFullName('')
+        //         navigation.navigate('BottomTabs');
+        //         return
+        //     case 11:
+        //         setEmailError(EM);
+        //         return;
+        //     case 12:
+        //         setEmailError(EM);
+        //         return;
+        //     case 13:
+        //         setEmailError(initialResponse.EM)
+        //         setPasswordError(EM);
+        //         return;
+        //     default:
+        //         return
+        // }
 
-
+        navigation.navigate('BottomTabs')
     };
     const handleGoToSignUp = () => {
         setPasswordError(initialResponse.EM);

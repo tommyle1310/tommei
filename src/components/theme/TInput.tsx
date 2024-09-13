@@ -1,16 +1,20 @@
 // src/components/theme/TInput.tsx
 import React, { useCallback, useState } from 'react';
 import { TouchableWithoutFeedback, View } from 'react-native';
-import { Icon, Input, Text } from '@ui-kitten/components';
+import { useTheme } from '../../hooks/useTheme';
+import { Icon, Input, Text, useTheme as useThemeApp } from '@ui-kitten/components';
 
-const TInput = ({ label, placeholder, value, onChangeText, isPassword = false, error }: {
+const TInput = ({ label, placeholder, value, onChangeText, isPassword = false, error, style }: {
     label?: string;
     placeholder?: string;
     value?: string;
     onChangeText: (text: string) => void;
     isPassword?: boolean;
     error?: string;
+    style?: object
 }) => {
+    const { theme } = useTheme()
+    const themeApp = useThemeApp()
     const [secureTextEntry, setSecureTextEntry] = useState(isPassword);
 
     const toggleSecureEntry = useCallback(() => {
@@ -27,8 +31,12 @@ const TInput = ({ label, placeholder, value, onChangeText, isPassword = false, e
     };
 
     return (
-        <View>
+        <View
+            style={style}
+        >
             <Input
+                accessoryLeft={<Icon fill={(theme === 'light') ? themeApp['color-default-primary'] : '#aaa'} name='search-outline' />}
+                size='large'
                 status={error ? 'danger' : 'basic'}
                 value={value}
                 label={label}
