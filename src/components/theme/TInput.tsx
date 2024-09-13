@@ -2,15 +2,16 @@
 import React, { useCallback, useState } from 'react';
 import { TouchableWithoutFeedback, View } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
-import { Icon, Input, Text, useTheme as useThemeApp } from '@ui-kitten/components';
+import { Icon, IconElement, Input, Text, useTheme as useThemeApp } from '@ui-kitten/components';
 
-const TInput = ({ label, placeholder, value, onChangeText, isPassword = false, error, style }: {
+const TInput = ({ label, placeholder, value, onChangeText, isPassword = false, error, style, icon }: {
     label?: string;
     placeholder?: string;
     value?: string;
     onChangeText: (text: string) => void;
     isPassword?: boolean;
     error?: string;
+    icon?: IconElement
     style?: object
 }) => {
     const { theme } = useTheme()
@@ -35,7 +36,7 @@ const TInput = ({ label, placeholder, value, onChangeText, isPassword = false, e
             style={style}
         >
             <Input
-                accessoryLeft={<Icon fill={(theme === 'light') ? themeApp['color-default-primary'] : '#aaa'} name='search-outline' />}
+                accessoryLeft={icon && icon}
                 size='large'
                 status={error ? 'danger' : 'basic'}
                 value={value}

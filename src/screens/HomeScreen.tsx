@@ -39,7 +39,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                 </View>
 
                 <View style={[commonStyle.ic, { gap: 8 }]}>
-                    <TInput style={{ flex: 1 }} placeholder='Search for clothes...' onChangeText={() => { }} value={''} />
+                    <TInput icon={<Icon fill={(theme === 'light') ? themeApp['color-default-primary'] : '#aaa'} name='search-outline' />} style={{ flex: 1 }} placeholder='Search for clothes...' onChangeText={() => { }} value={''} />
                     <TPrimaryBtn onTap={() => { }} title='congif' />
                 </View>
                 <HorizontalList selectedId={selectedTagId} />
