@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { ThemeContext } from '../../theme-context';
-import { Theme } from '../utils/types';
+import { Theme } from '../utils/commonTypes';
 
 // Function to handle theme-based styling
 export

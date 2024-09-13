@@ -1,126 +1,127 @@
-// src/components/AuthWrapper.tsx
-import React from 'react';
-import { View, StyleSheet, SafeAreaView, ViewStyle, TextStyle, StyleProp, Pressable, ImageProps, ScrollView } from 'react-native';
+// src/screens/Auth/AuthWrapper.tsx
+import React, { useMemo } from 'react';
+import { View, StyleSheet, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform, Pressable } from 'react-native';
+import { Button, Divider, Icon } from '@ui-kitten/components';
 import { useTheme } from '../../hooks/useTheme';
 import TText from '../../components/theme/TText';
 import TInput from '../../components/theme/TInput';
-import { Button, Divider, Icon, IconElement, IconProps, Spinner, useTheme as useThemeApp } from '@ui-kitten/components';
+import TPrimaryBtn from '../../components/theme/TPrimaryBtn';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackParamList } from '../../navigation/types';
+import { AuthResponse } from '../../types/authResponse';
 
-
-// Define the props for the AuthWrapper component
 interface AuthWrapperProps {
-    style?: StyleProp<ViewStyle>;
+    error?: AuthResponse;
     title?: string;
-    btn: { title: string, onTap: () => void }
+    btn: { title: string, onTap: () => void };
     subTitle: string;
-    smallText: { desc: string, title: string, onTap: () => void }
+    smallText: { desc: string, title: string, onTap: () => void };
     navigation: StackNavigationProp<StackParamList, 'Login' | 'Signup'>;
-    bottomText: { desc: string, title: string, onTap: () => void }
+    bottomText: { desc: string, title: string, onTap: () => void };
+    email: string;
+    setEmail: (text: string) => void;
+    password: string;
+    setPassword: (text: string) => void;
+    fullName: string;
+    setFullName: (text: string) => void;
+    emailError?: string;
+    passwordError?: string;
+    fullNameError?: string;
 }
 
-const Facebook = (props: IconProps): IconElement => (
-    <Icon
-        {...props}
-        name='facebook'
-    />
-);
-const Google = (props: IconProps): IconElement => (
-    <Icon
-        {...props}
-        name='google'
-    />
-);
+const AuthWrapper: React.FC<AuthWrapperProps> = ({
+    btn, title, subTitle, bottomText, email, setEmail, password, setPassword, fullName, setFullName,
+    emailError, passwordError, fullNameError
+}) => {
+    const { themeStyle, theme } = useTheme();
 
-const LoadingIndicator = (props: ImageProps): React.ReactElement => (
-    <View style={[props.style, styles.indicator]}>
-        <Spinner size='small' />
-    </View>
-);
-
-
-
-
-// AuthWrapper component
-const AuthWrapper: React.FC<AuthWrapperProps> = ({ subTitle, style, title, smallText, bottomText, navigation, btn }) => {
-    const { themeStyle, theme } = useTheme(); // Use the custom hook
-    const themeApp = useThemeApp()
-
-    const Content = () => (
-        <SafeAreaView style={[styles.container, themeStyle]}>
-
-            <View style={[styles.content, style]}>
+    const Content = useMemo(() => (
+        <View style={[styles.container, themeStyle, { flex: 1 }]}>
+            <View style={[styles.content, themeStyle]}>
                 <View style={styles.titleContainer}>
                     <TText style={styles.mainTitle} title={title} />
                     <TText style={styles.subTitle} title={subTitle} />
                 </View>
-                <View style={styles.formControl}>
-                    <TInput label='Email' placeholder="Enter your email address" />
-                </View>
-                <View style={styles.formControl}>
-                    <TInput label='Password' placeholder="Enter your password" />
-                </View>
-                {
-                    title === 'Create an account' &&
+                {btn.title === 'Sign Up' && (
                     <View style={styles.formControl}>
-                        <TInput label='Password' placeholder="Enter your password" />
+                        <TInput
+                            value={fullName}
+                            onChangeText={setFullName}
+                            label="Full Name"
+                            placeholder="Enter your full name"
+                            error={fullNameError}
+                        />
                     </View>
-                }
-                <View style={styles.smallText}>
-                    <TText title={smallText.desc} />
-                    <Pressable ><TText style={styles.underlineText} title={smallText.title} /></Pressable>
+                )}
+                <View style={styles.formControl}>
+                    <TInput
+                        value={email}
+                        onChangeText={setEmail}
+                        label="Email"
+                        placeholder="Enter your email address"
+                        error={emailError}
+                    />
                 </View>
-                <Button onPress={() => { btn.onTap() }} >{btn.title}</Button>
-
-                <Divider style={{ backgroundColor: themeApp['color-info-default'], marginVertical: 20 }} />
+                <View style={styles.formControl}>
+                    <TInput
+                        value={password}
+                        onChangeText={setPassword}
+                        label="Password"
+                        isPassword
+                        placeholder="Enter your password"
+                        error={passwordError}
+                    />
+                </View>
+                <TPrimaryBtn onTap={btn.onTap} title={btn.title} />
+                <Divider style={{ backgroundColor: theme['color-info-default'], marginVertical: 20 }} />
                 <View style={styles.otherLogin}>
-                    <Button accessoryLeft={Google} onPress={() => { }} style={{ ...themeStyle }} appearance='outline' status={theme === 'light' ? 'primary' : 'warning'}>Login with Google</Button>
-                    <Button accessoryLeft={Facebook} onPress={() => { }} style={{ backgroundColor: '#1877F2' }} >Login with Facebook</Button>
+                    <Button
+                        accessoryLeft={(props) => <Icon {...props} name="google" />}
+                        onPress={() => { }}
+                        style={{ ...themeStyle }}
+                        appearance="outline"
+                        status={theme === 'light' ? 'primary' : 'warning'}
+                    >
+                        Login with Google
+                    </Button>
+                    <Button
+                        accessoryLeft={(props) => <Icon {...props} name="facebook" />}
+                        onPress={() => { }}
+                        style={{ backgroundColor: '#1877F2' }}
+                    >
+                        Login with Facebook
+                    </Button>
                 </View>
                 <View style={styles.bottomTextContainer}>
                     <TText title={bottomText.desc} />
-                    <Pressable onPress={() => bottomText.onTap()} style={{}} ><TText style={{ ...styles.underlineText }} title={bottomText.title} /></Pressable>
+                    <Pressable onPress={bottomText.onTap}>
+                        <TText style={styles.underlineText} title={bottomText.title} />
+                    </Pressable>
                 </View>
             </View>
-        </SafeAreaView>
-    )
-
+        </View>
+    ), [fullName, email, password, themeStyle, btn, title, subTitle, bottomText, fullNameError, emailError, passwordError]);
 
     return (
-        <>
-            {title === 'Create an account' ?
-                <ScrollView>
-                    <Content />
-                </ScrollView>
-                :
-                <Content />
-            }
-        </>
-
+        <View style={{ flex: 1 }}>
+            {/* <ScrollView keyboardShouldPersistTaps="always"> */}
+            {Content}
+            {/* </ScrollView> */}
+        </View>
     );
 };
 
-// Define default styles
 const styles = StyleSheet.create({
     container: {
         paddingTop: 48,
         padding: 20,
         flex: 1,
-        // backgroundColor: '#fff',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        padding: 16,
-        textAlign: 'center',
     },
     content: {
         flex: 1,
         gap: 24
     },
     titleContainer: {
-
     },
     mainTitle: {
         fontSize: 24,
@@ -129,27 +130,19 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: '#ccc'
     },
-    formControl: {
-
-    },
-    smallText: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: 6
-    },
+    formControl: {},
     underlineText: {
         textDecorationLine: 'underline'
     },
     otherLogin: {
-        flex: 1, gap: 20
-    },
-    indicator: {
-        alignItems: 'center',
-        justifyContent: 'center',
+        flex: 1,
+        gap: 20
     },
     bottomTextContainer: {
-        flexDirection: 'row', gap: 6, alignSelf: 'center'
+        flexDirection: 'row',
+        gap: 6,
+        alignSelf: 'center'
     }
 });
 
-export default AuthWrapper;
+export default React.memo(AuthWrapper);

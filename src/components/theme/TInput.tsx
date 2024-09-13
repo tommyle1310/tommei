@@ -1,72 +1,51 @@
-import React from 'react';
-import { TouchableWithoutFeedback, StyleSheet, View } from 'react-native';
-import { Icon, IconElement, Input, Text } from '@ui-kitten/components';
+// src/components/theme/TInput.tsx
+import React, { useCallback, useState } from 'react';
+import { TouchableWithoutFeedback, View } from 'react-native';
+import { Icon, Input, Text } from '@ui-kitten/components';
 
-const AlertIcon = (props): IconElement => (
-    <Icon
-        {...props}
-        name='alert-circle-outline'
-    />
-);
+const TInput = ({ label, placeholder, value, onChangeText, isPassword = false, error }: {
+    label?: string;
+    placeholder?: string;
+    value?: string;
+    onChangeText: (text: string) => void;
+    isPassword?: boolean;
+    error?: string;
+}) => {
+    const [secureTextEntry, setSecureTextEntry] = useState(isPassword);
 
-const TInput = ({ label, placeholder }: { label?: string, placeholder?: string }): React.ReactElement => {
-
-    const [value, setValue] = React.useState('');
-    const [secureTextEntry, setSecureTextEntry] = React.useState(true);
-
-    const toggleSecureEntry = (): void => {
+    const toggleSecureEntry = useCallback(() => {
         setSecureTextEntry(!secureTextEntry);
-    };
+    }, [secureTextEntry]);
 
-    const renderIcon = (props): React.ReactElement => (
-        <TouchableWithoutFeedback onPress={toggleSecureEntry}>
-            <Icon
-                {...props}
-                name={secureTextEntry ? 'eye-off' : 'eye'}
-            />
-        </TouchableWithoutFeedback>
-    );
-
-    const renderCaption = (): React.ReactElement => {
+    const renderIcon = (props) => {
+        if (!isPassword) return null;
         return (
-            <View style={styles.captionContainer}>
-                {AlertIcon(styles.captionIcon)}
-                <Text style={styles.captionText}>
-                    Should contain at least 8 symbols
-                </Text>
-            </View>
+            <TouchableWithoutFeedback onPress={toggleSecureEntry}>
+                <Icon {...props} name={secureTextEntry ? 'eye-off' : 'eye'} />
+            </TouchableWithoutFeedback>
         );
     };
 
     return (
-        <Input
-            value={value}
-            label={label}
-            placeholder={placeholder}
-            caption={renderCaption}
-            accessoryRight={renderIcon}
-            secureTextEntry={secureTextEntry}
-            onChangeText={nextValue => setValue(nextValue)}
-        />
+        <View>
+            <Input
+                status={error ? 'danger' : 'basic'}
+                value={value}
+                label={label}
+                placeholder={placeholder}
+                secureTextEntry={isPassword ? secureTextEntry : false}
+                autoCapitalize='none'
+                accessoryRight={isPassword ? renderIcon : undefined}
+                onChangeText={(text) => onChangeText(text)}
+            />
+            {error && (
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Icon style={{ width: 20, height: 20 }} fill='#F96718' name='alert-circle' />
+                    <Text status='danger' category='s2'>{error}</Text>
+                </View>
+            )}
+        </View>
     );
 };
 
-const styles = StyleSheet.create({
-    captionContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    captionIcon: {
-        width: 10,
-        height: 10,
-        marginRight: 5,
-    },
-    captionText: {
-        fontSize: 12,
-        fontWeight: '400',
-        color: '#8F9BB3',
-    },
-});
-
-export default TInput
+export default React.memo(TInput);

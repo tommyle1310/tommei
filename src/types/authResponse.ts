@@ -1,0 +1,1 @@
+export type AuthResponse = { EC: number, EM: string }
