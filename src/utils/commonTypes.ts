@@ -5,3 +5,4 @@ export type StateSetter<T> = {
     value: T;
     setValue: React.Dispatch<React.SetStateAction<T>>;
 };
+

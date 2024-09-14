@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, SafeAreaView, ViewStyle, TextStyle, StyleProp, Text } from 'react-native';
+import { View, StyleSheet, SafeAreaView, ViewStyle, TextStyle, StyleProp, Text, ScrollView } from 'react-native';
 import { ThemeContext } from '../../../theme-context'; // Adjust path as needed
 import { useTheme } from '../../hooks/useTheme';
 
@@ -22,12 +22,15 @@ const MainWrapper: React.FC<MainWrapperProps> = ({ children, style, title, title
     };
 
     return (
-        <SafeAreaView style={[containerStyle, themeStyle]}>
-            {title && <Text style={[styles.title, titleStyle]}>{title}</Text>}
-            <View style={[styles.content, style]}>
-                {children}
-            </View>
-        </SafeAreaView>
+        <ScrollView>
+
+            <SafeAreaView style={[containerStyle, themeStyle]}>
+                {title && <Text style={[styles.title, titleStyle]}>{title}</Text>}
+                <View style={[styles.content, style]}>
+                    {children}
+                </View>
+            </SafeAreaView>
+        </ScrollView>
     );
 };
 

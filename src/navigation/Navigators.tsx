@@ -1,17 +1,16 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator, DrawerContentComponentProps } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeScreen from '../screens/HomeScreen';
 import DetailsScreen from '../screens/DetailsScreen';
-import SettingsScreen from '../screens/SettingsScreen';
 import Login from '../screens/Auth/Login';
 import Signup from '../screens/Auth/Signup';
 
 import { StackParamList, BottomTabParamList, TopTabParamList } from '../navigation/types';
 import { DrawerNavigator } from './Drawer';
+import HomeProductDetailsNavigator from './HomeProduct/StackHomeProductDetails';
 
 
 const Stack = createStackNavigator<StackParamList>();
@@ -30,7 +29,7 @@ function TopTabs() {
 function BottomTabs() {
     return (
         <BottomTab.Navigator>
-            <BottomTab.Screen options={{ headerShown: false }} name="BrandIcon" component={DrawerNavigator} />
+            <BottomTab.Screen options={{ headerShown: false }} name="BrandIcon" component={HomeProductDetailsNavigator} />
             <BottomTab.Screen options={{ headerShown: false }} name="Details" component={DetailsScreen} />
         </BottomTab.Navigator>
     );

@@ -14,6 +14,11 @@ export type StackParamList = {
     Login: undefined
 };
 
+export type StackHomeProductList = {
+    Home: undefined;
+    ProductDetails: undefined
+}
+
 // Drawer Navigator types
 export type DrawerParamList = {
     Home: undefined;

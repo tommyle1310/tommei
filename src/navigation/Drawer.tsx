@@ -6,17 +6,13 @@ import { useTheme } from "../hooks/useTheme";
 import { DrawerParamList } from "./types";
 import HomeScreen from "../screens/HomeScreen";
 import SettingsScreen from "../screens/SettingsScreen";
-import { Button, useTheme as useThemeApp } from "@ui-kitten/components";
-import { ThemeContext } from "../../theme-context";
-import { useContext } from "react";
+import { Button } from "@ui-kitten/components";
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
 
 
 export const CustomDrawerContent: React.FC<DrawerContentComponentProps> = (props) => {
     const { themeStyle, } = useTheme(); // Use the custom hook
-    const themeApp = useThemeApp()
-    const { theme } = useContext(ThemeContext);
 
     return (
         <MainWrapper style={{ ...themeStyle, alignItems: 'flex-start', }}>

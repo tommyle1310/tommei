@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable, FlatList } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
-import { DrawerParamList } from '../navigation/types';
+import { DrawerParamList, StackHomeProductList } from '../navigation/types';
 import MainWrapper from './Wrapper/MainWrapper';
 import DrawerIcon from '../components/DrawerIcon';
-import { Button, Icon, useTheme as useThemeApp } from '@ui-kitten/components';
+import { Button, Icon, Layout } from '@ui-kitten/components';
 import TText from '../components/theme/TText';
 import { commonStyle } from '../utils/styles/commonStyles';
 import TInput from '../components/theme/TInput';
@@ -13,18 +13,21 @@ import TPrimaryBtn from '../components/theme/TPrimaryBtn';
 import { useTheme } from '../hooks/useTheme';
 import HorizontalList from '../components/HorizontalList';
 import Carosel from '../components/Carosel';
+import ListProducts from '../components/Products/ListProducts';
+import { listProducts } from '../utils/sampleData/discover/listProducts';
+import { StackScreenProps } from '@react-navigation/stack';
+import { listCategories } from '../utils/sampleData/discover/listCategories';
 
 // Define the type of navigation prop for this screen
-type Props = DrawerScreenProps<DrawerParamList, 'Home'>;
+type Props = StackScreenProps<StackHomeProductList, 'Home'>;
 
 const HomeScreen: React.FC<Props> = ({ navigation }) => {
-    const themeApp = useThemeApp()
-    const { theme } = useTheme()
+    const { theme, handleColor } = useTheme()
     const [selectedTagId, setSelectedTagId] = useState('2')
     return (
         <MainWrapper>
-            <DrawerIcon navigation={navigation}>
-            </DrawerIcon>
+            {/* <DrawerIcon navigation={navigation}>
+            </DrawerIcon> */}
 
 
             {/* discover */}
@@ -33,16 +36,16 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                     <TText title='Discover' style={{ ...commonStyle.headerTitle, fontWeight: 700 }} />
                     <Icon
                         style={commonStyle.icon}
-                        fill={themeApp['color-primary-default']}
+                        fill={handleColor('color-primary-default')}
                         name='bell-outline'
                     />
                 </View>
 
                 <View style={[commonStyle.ic, { gap: 8 }]}>
-                    <TInput icon={<Icon fill={(theme === 'light') ? themeApp['color-default-primary'] : '#aaa'} name='search-outline' />} style={{ flex: 1 }} placeholder='Search for clothes...' onChangeText={() => { }} value={''} />
+                    <TInput icon={<Icon fill={(theme === 'light') ? handleColor('color-default-primary') : '#aaa'} name='search-outline' />} style={{ flex: 1 }} placeholder='Search for clothes...' onChangeText={() => { }} value={''} />
                     <TPrimaryBtn onTap={() => { }} title='congif' />
                 </View>
-                <HorizontalList selectedId={selectedTagId} />
+                <HorizontalList data={listCategories} selectedId={selectedTagId} />
                 <View style={{ flex: 1, gap: 14 }}>
                     {/* all featured title */}
                     <View style={[commonStyle.jb, commonStyle.ic]}>
@@ -55,7 +58,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                     {/* carosel */}
                     <Carosel />
                     {/* deal of the day */}
-                    <View style={[commonStyle.ic, commonStyle.jb, { padding: 10, backgroundColor: themeApp['color-info-default'], borderRadius: 12 }]}>
+                    <View style={[commonStyle.ic, commonStyle.jb, { padding: 10, backgroundColor: handleColor('color-info-default'), borderRadius: 12 }]}>
                         <View style={{ gap: 10 }}>
                             <TText style={{ fontSize: 18, fontWeight: 700, backgroundColor: 'transparent' }} title='Deal of the day' />
                             <View style={[commonStyle.ic, { gap: 5 }]}>
@@ -67,6 +70,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                         <Button accessoryRight={<Icon name='arrow-forward-outline' />} size='small' appearance='outline' status='control'>View All</Button>
 
                     </View>
+                    <ListProducts listProducts={listProducts} navigation={navigation} />
                 </View>
             </View>
 
