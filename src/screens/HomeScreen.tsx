@@ -17,6 +17,7 @@ import ListProducts from '../components/Products/ListProducts';
 import { listProducts } from '../utils/sampleData/discover/listProducts';
 import { StackScreenProps } from '@react-navigation/stack';
 import { listCategories } from '../utils/sampleData/discover/listCategories';
+import TButton from '../components/theme/TButton';
 
 // Define the type of navigation prop for this screen
 type Props = StackScreenProps<StackHomeProductList, 'Home'>;
@@ -43,9 +44,9 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
                 <View style={[commonStyle.ic, { gap: 8 }]}>
                     <TInput icon={<Icon fill={(theme === 'light') ? handleColor('color-default-primary') : '#aaa'} name='search-outline' />} style={{ flex: 1 }} placeholder='Search for clothes...' onChangeText={() => { }} value={''} />
-                    <TPrimaryBtn onTap={() => { }} title='congif' />
+                    <TButton icon={<Icon name='options' style={commonStyle.icon} />} />
                 </View>
-                <HorizontalList data={listCategories} selectedId={selectedTagId} />
+                <HorizontalList type='categories' data={listCategories} selectedId={selectedTagId} />
                 <View style={{ flex: 1, gap: 14 }}>
                     {/* all featured title */}
                     <View style={[commonStyle.jb, commonStyle.ic]}>

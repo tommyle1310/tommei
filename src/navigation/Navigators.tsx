@@ -11,6 +11,7 @@ import Signup from '../screens/Auth/Signup';
 import { StackParamList, BottomTabParamList, TopTabParamList } from '../navigation/types';
 import { DrawerNavigator } from './Drawer';
 import HomeProductDetailsNavigator from './HomeProduct/StackHomeProductDetails';
+import SettingsScreen from '../screens/SettingsScreen';
 
 
 const Stack = createStackNavigator<StackParamList>();
@@ -31,6 +32,7 @@ function BottomTabs() {
         <BottomTab.Navigator>
             <BottomTab.Screen options={{ headerShown: false }} name="BrandIcon" component={HomeProductDetailsNavigator} />
             <BottomTab.Screen options={{ headerShown: false }} name="Details" component={DetailsScreen} />
+            <BottomTab.Screen options={{ headerShown: false }} name="Settings" component={SettingsScreen} />
         </BottomTab.Navigator>
     );
 }

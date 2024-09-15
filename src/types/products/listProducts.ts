@@ -6,4 +6,4 @@ export interface ListProducts {
     category: string[],
 }
 
-export type typeHorizontalList = 'colors' | 'categories' | 'products'
+export type typeHorizontalList = 'colors' | 'categories' | 'products' | 'productExtraOptions'

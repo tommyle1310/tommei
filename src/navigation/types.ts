@@ -30,7 +30,8 @@ export type DrawerParamList = {
 export type BottomTabParamList = {
     Home: undefined;
     Details: undefined;
-    BrandIcon: undefined
+    BrandIcon: undefined;
+    Settings: undefined
 };
 
 // Top Tab Navigator types

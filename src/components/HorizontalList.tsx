@@ -12,7 +12,7 @@ type HorizontalListProps = {
 };
 
 const HorizontalList = ({ selectedId, data, type }: HorizontalListProps) => {
-    const { theme } = useTheme();
+    const { theme, handleColor } = useTheme();
 
     // Type guards to differentiate between categories and colors
     const isCategory = (item: any): item is listCategories => 'title' in item;
@@ -21,7 +21,7 @@ const HorizontalList = ({ selectedId, data, type }: HorizontalListProps) => {
     return (
         <FlatList
             horizontal
-            style={{ padding: 3, maxHeight: 40, marginVertical: 10 }}
+            style={{ padding: 3, marginVertical: 10 }}
             data={data}
             renderItem={({ item }) => {
                 if (type === 'categories') {
@@ -49,7 +49,7 @@ const HorizontalList = ({ selectedId, data, type }: HorizontalListProps) => {
                                 marginRight: 5,
                                 padding: 5,
                                 borderColor: '#ccc',
-                                borderRadius: 9999,
+                                borderRadius: 8,
                             }}>
                                 <TText title={item.title} style={{
                                     fontSize: 16,
@@ -61,6 +61,18 @@ const HorizontalList = ({ selectedId, data, type }: HorizontalListProps) => {
                     }
                 } else if (type === 'colors') {
                     if (isColorItem(item)) {
+                        if (selectedId === item.id) {
+                            return <Pressable style={{
+                                backgroundColor: item.color,
+                                marginRight: 5,
+                                aspectRatio: '1/1',
+                                width: 30,
+                                borderWidth: 2,
+                                borderColor: '#ccc',
+                                borderRadius: 9999,
+                            }}>
+                            </Pressable>
+                        }
                         return (
                             <Pressable style={{
                                 backgroundColor: item.color,
@@ -73,6 +85,20 @@ const HorizontalList = ({ selectedId, data, type }: HorizontalListProps) => {
                             </Pressable>
                         );
                     }
+                }
+                else if (type === 'productExtraOptions') {
+                    return (
+                        <Pressable style={{
+                            marginRight: 5,
+                            borderWidth: 1,
+                            borderColor: '#ccc',
+                            borderRadius: 8,
+                            backgroundColor: selectedId === item.id ? handleColor('color-basic-400') : 'transparent',
+                            padding: 10,
+                        }}>
+                            <TText title={item.title} style={{ backgroundColor: 'transparent', color: selectedId === item.id ? handleColor('color-text-400') : handleColor('color-basic-500'), }} />
+                        </Pressable>
+                    );
                 }
                 return null; // Handle unexpected cases
             }}

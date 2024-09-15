@@ -2,22 +2,31 @@
 import { View, Text, Button, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
 import { DrawerScreenProps } from '@react-navigation/drawer';
-import { DrawerParamList } from '../navigation/types';
+import { DrawerParamList, StackParamList } from '../navigation/types';
 import MainWrapper from './Wrapper/MainWrapper';
 import DrawerIcon from '../components/DrawerIcon';
 import { useTheme } from '../hooks/useTheme';
 import TText from '../components/theme/TText';
+import ToggleTheme from '../components/ToggleThemeBtn';
+import { StackScreenProps } from '@react-navigation/stack';
 
 // Define the type of navigation prop for this screen
-type Props = DrawerScreenProps<DrawerParamList, 'Settings'>;
+type Props = StackScreenProps<StackParamList, 'BottomTabs'>;
 
 const SettingsScreen: React.FC<Props> = ({ navigation }) => {
+    const handleSignOut = () => {
+        navigation.navigate('Login');
+    };
 
     return (
         <MainWrapper>
-            <DrawerIcon navigation={navigation}>
-            </DrawerIcon>
+            {/* <DrawerIcon navigation={navigation}>
+            </DrawerIcon> */}
+
             <TText style={styles.text} title='Setting Screen' />
+            <ToggleTheme />
+            <Button title="Sign out" onPress={handleSignOut} />
+
         </MainWrapper>
     );
 };

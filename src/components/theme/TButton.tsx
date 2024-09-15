@@ -28,7 +28,7 @@ const TButton = ({ icon, style, title, onPress }: { icon?: IconElement, title?: 
             style={[styles.btnContainer, style]}
         >
             <Animated.View style={{ transform: [{ scale }] }}>
-                {icon}
+                {icon && icon}
                 {title && <TText style={{ backgroundColor: 'transparent' }} title={title} />}
             </Animated.View>
         </Pressable>
