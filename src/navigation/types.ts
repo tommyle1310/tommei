@@ -30,6 +30,7 @@ export type DrawerParamList = {
 export type BottomTabParamList = {
     Home: undefined;
     Details: undefined;
+    Cart: undefined;
     BrandIcon: undefined;
     Settings: undefined
 };

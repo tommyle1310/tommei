@@ -48,11 +48,6 @@ const ProductDetail: React.FC<Props> = ({ navigation }) => {
                     </View>
                     <Button appearance='outline' status={theme === 'dark' ? 'control' : 'primary'}>Add to cart</Button>
                     <TPrimaryBtn onTap={() => { }} title='Purchase' />
-                    <View style={{ flexWrap: 'wrap', ...commonStyle.ic, gap: 20 }}>
-                        <FeatureProduct icon={<Icon style={commonStyle.icon} name='car-outline' fill='#888' />} subTitle='Free delivery' title='1-2 day' />
-                        <FeatureProduct icon={<Icon style={commonStyle.icon} name='cube-outline' fill='#888' />} subTitle='Today' title='In Stock' />
-                        <FeatureProduct title='Guaranteed' icon={<Icon style={commonStyle.icon} name='checkmark-circle' fill='#888' />} subTitle='1 year' />
-                    </View>
                     <TText style={styles.h3} title={'Product Details'} />
                     <View style={{}}>
                         <Text style={[styles.p, themeStyle]}>
@@ -64,7 +59,19 @@ const ProductDetail: React.FC<Props> = ({ navigation }) => {
                             </Pressable>
                         </Text>
                     </View>
+                    <View style={[commonStyle.ic, { gap: 5 }]}>
+                        <Icon style={commonStyle.smallIcon} name='star' fill={handleColor('color-warning-default')} />
+                        <TText style={{ fontWeight: 600, fontSize: 12, textDecorationLine: 'underline' }} title={`${4.0}/5`} />
+                        <TText style={{ fontSize: 12, color: handleColor('color-basic-600') }} title={`(${45} reviews)`} />
+                    </View>
+                    <View style={{ flexWrap: 'wrap', ...commonStyle.ic, gap: 20 }}>
+                        <FeatureProduct icon={<Icon style={commonStyle.icon} name='car-outline' fill='#888' />} subTitle='Free delivery' title='1-2 day' />
+                        <FeatureProduct icon={<Icon style={commonStyle.icon} name='cube-outline' fill='#888' />} subTitle='Today' title='In Stock' />
+                        <FeatureProduct title='Guaranteed' icon={<Icon style={commonStyle.icon} name='checkmark-circle' fill='#888' />} subTitle='1 year' />
+                    </View>
+
                 </View>
+
             </View>
         </MainWrapper>
     )
