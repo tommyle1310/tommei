@@ -16,8 +16,15 @@ export type StackParamList = {
 
 export type StackHomeProductList = {
     Home: undefined;
-    ProductDetails: undefined
-}
+    ProductDetails: undefined;
+};
+
+export type StackCartCheckoutPurchaseList = {
+    Cart: undefined;
+    Address: undefined;
+    Checkout: undefined;
+    Purchase: undefined;
+};
 
 // Drawer Navigator types
 export type DrawerParamList = {
@@ -30,7 +37,7 @@ export type DrawerParamList = {
 export type BottomTabParamList = {
     Home: undefined;
     Details: undefined;
-    Cart: undefined;
+    CartCheckoutPurchase: undefined;
     BrandIcon: undefined;
     Settings: undefined
 };

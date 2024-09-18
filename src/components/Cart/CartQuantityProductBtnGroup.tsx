@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, ButtonGroup, Layout } from '@ui-kitten/components';
+import { Button, ButtonGroup, Input, Layout } from '@ui-kitten/components';
+import TText from '../theme/TText';
 
 const CartQuantityProductBtnGroup = (): React.ReactElement => (
     <Layout
@@ -12,12 +13,14 @@ const CartQuantityProductBtnGroup = (): React.ReactElement => (
         <ButtonGroup
             style={styles.buttonGroup}
             status='primary'
+            size='tiny'
         >
-            <Button>
-                L
+            <Button >
+                -
             </Button>
-            <Button>
-                R
+            <TText title='1' style={{ paddingHorizontal: 4, paddingVertical: 4 }} />
+            <Button >
+                +
             </Button>
         </ButtonGroup>
 
@@ -30,6 +33,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         flexWrap: 'wrap',
+        borderRadius: 10,
     },
     buttonGroup: {
         margin: 2,

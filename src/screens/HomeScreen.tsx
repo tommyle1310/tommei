@@ -26,13 +26,13 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
     const { theme, handleColor } = useTheme()
     const [selectedTagId, setSelectedTagId] = useState('2')
     return (
-        <MainWrapper>
+        <MainWrapper style={{ paddingBottom: 100, }}>
             {/* <DrawerIcon navigation={navigation}>
             </DrawerIcon> */}
 
 
             {/* discover */}
-            <View style={{ gap: 20, flexDirection: 'column', flex: 1 }}>
+            <View style={{ gap: 20, flexDirection: 'column', flex: 1, }}>
                 <View style={[commonStyle.jb]}>
                     <TText title='Discover' style={{ ...commonStyle.headerTitle, fontWeight: 700 }} />
                     <Icon

@@ -15,6 +15,7 @@ import { useTheme } from '../../hooks/useTheme'
 import { transform } from 'typescript'
 import FeatureProduct from '../../components/Products/FeatureProduct'
 import TPrimaryBtn from '../../components/theme/TPrimaryBtn'
+import TitleScreen from '../../components/TitleScreen'
 
 type Props = StackScreenProps<StackHomeProductList, 'ProductDetails'>;
 
@@ -24,14 +25,16 @@ const ProductDetail: React.FC<Props> = ({ navigation }) => {
     return (
         <MainWrapper style={[styles.container]}>
             <View style={{ gap: 10 }}>
-                <View style={[commonStyle.jb, commonStyle.ic]}>
-                    <View style={{ width: '10%' }}>
-                        <TButton onPress={() => navigation.navigate('Home')} style={{}} icon={<Icon fill={handleColor('color-basic-400')} style={[commonStyle.icon]} name='arrow-ios-back-outline' />} />
-                    </View>
-                    <View style={{ width: '10%' }}>
-                        <TButton onPress={() => navigation.navigate('Home')} style={{}} icon={<Icon fill={handleColor('color-basic-400')} style={[commonStyle.icon]} name='shopping-bag-outline' />} />
-                    </View>
-                </View>
+                <TitleScreen
+                    navigation={navigation}
+                    navigationIconLeft={() => navigation.navigate('Home')}
+                    navigationIconRight={() => navigation.navigate('Home')}
+                    title={'Product Details'} iconLeft={<Icon fill={handleColor('color-basic-500')}
+                        style={[commonStyle.icon]} name='arrow-ios-back-outline' />}
+                    iconRight={<Icon fill={handleColor('color-basic-500')}
+                        style={[commonStyle.icon]} name='shopping-bag-outline' />}
+                />
+
                 <Carosel />
                 <View style={[commonStyle.ic, { gap: 4 }]}>
                     <TText style={styles.h3} title='Size:' />

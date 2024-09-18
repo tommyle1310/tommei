@@ -10,16 +10,16 @@ const CartItem = () => {
     const { handleColor } = useTheme()
     return (
         <Pressable style={[{ borderWidth: 1, borderRadius: 8, padding: 10, gap: 8, borderColor: handleColor('color-basic-600') }, commonStyle.jb]}>
-            <View style={{ aspectRatio: '1/1', width: 60, backgroundColor: 'green', alignSelf: 'center' }}></View>
+            <View style={{ aspectRatio: '1/1', width: 80, backgroundColor: 'green', alignSelf: 'center' }}></View>
             <View style={[{ flex: 1, gap: 5, }, commonStyle.jb, commonStyle.ic]}>
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', gap: 10 }}>
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', }}>
                     {/* First Column */}
                     <View style={commonStyle.cjb}>
                         <TText title='Regular Fit Slogan' />
                         <TText title='Size L' />
                     </View>
                     {/* Second Column */}
-                    <View style={[commonStyle.cjb, { alignItems: 'flex-end', gap: 20 }]}>
+                    <View style={[commonStyle.cjb, { alignItems: 'flex-end', gap: 10 }]}>
                         <View style={{}}>
                             <Icon name='trash-outline' fill={handleColor('color-danger-default')} style={commonStyle.smallIcon} />
                         </View>

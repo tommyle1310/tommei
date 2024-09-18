@@ -21,7 +21,7 @@ const HorizontalList = ({ selectedId, data, type }: HorizontalListProps) => {
     return (
         <FlatList
             horizontal
-            style={{ padding: 3, marginVertical: 10 }}
+            style={{ padding: 3, marginVertical: 10, maxHeight: type === 'productExtraOptions' ? 64 : 40 }}
             data={data}
             renderItem={({ item }) => {
                 if (type === 'categories') {
@@ -92,6 +92,7 @@ const HorizontalList = ({ selectedId, data, type }: HorizontalListProps) => {
                             marginRight: 5,
                             borderWidth: 1,
                             borderColor: '#ccc',
+                            flex: 1,
                             borderRadius: 8,
                             backgroundColor: selectedId === item.id ? handleColor('color-basic-400') : 'transparent',
                             padding: 10,

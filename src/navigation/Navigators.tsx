@@ -10,9 +10,9 @@ import Signup from '../screens/Auth/Signup';
 
 import { StackParamList, BottomTabParamList, TopTabParamList } from '../navigation/types';
 import { DrawerNavigator } from './Drawer';
-import HomeProductDetailsNavigator from './HomeProduct/StackHomeProductDetails';
+import HomeProductDetailsNavigator from './HomeProduct/StackHomeProductDetailsNavigator';
+import CartCheckoutPurchaseNavigator from './StackCartCheckoutPurhcaseNavigator';
 import SettingsScreen from '../screens/SettingsScreen';
-import CartScreen from '../screens/CartScreen';
 
 
 const Stack = createStackNavigator<StackParamList>();
@@ -33,7 +33,7 @@ function BottomTabs() {
         <BottomTab.Navigator>
             <BottomTab.Screen options={{ headerShown: false }} name="BrandIcon" component={HomeProductDetailsNavigator} />
             <BottomTab.Screen options={{ headerShown: false }} name="Details" component={DetailsScreen} />
-            <BottomTab.Screen options={{ headerShown: false }} name="Cart" component={CartScreen} />
+            <BottomTab.Screen options={{ headerShown: false }} name="CartCheckoutPurchase" component={CartCheckoutPurchaseNavigator} />
             <BottomTab.Screen options={{ headerShown: false }} name="Settings" component={SettingsScreen} />
         </BottomTab.Navigator>
     );
