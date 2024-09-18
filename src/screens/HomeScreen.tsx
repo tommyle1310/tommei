@@ -44,7 +44,12 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
                 <View style={[commonStyle.ic, { gap: 8 }]}>
                     <TInput icon={<Icon fill={(theme === 'light') ? handleColor('color-default-primary') : '#aaa'} name='search-outline' />} style={{ flex: 1 }} placeholder='Search for clothes...' onChangeText={() => { }} value={''} />
-                    <TButton icon={<Icon name='options' style={commonStyle.icon} />} />
+                    <TButton
+                        style={theme === 'light' ? { backgroundColor: '#111', padding: 10, borderRadius: 5, ...commonStyle.cc } : { backgroundColor: '#fff', padding: 10, borderRadius: 5, ...commonStyle.cc }}
+                        icon={<Icon name='options' fill={handleColor('color-basic-600')}
+                            style={commonStyle.icon} />}
+                        onPress={() => { }}
+                    />
                 </View>
                 <HorizontalList type='categories' data={listCategories} selectedId={selectedTagId} />
                 <View style={{ flex: 1, gap: 14 }}>

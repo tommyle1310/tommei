@@ -19,12 +19,12 @@ interface TitleScreenProps extends PressableProps {
     children?: React.ReactNode;
     iconRight?: IconElement;
     iconLeft?: IconElement;
-    navigationIconLeft?: any;
-    navigationIconRight?: any;
+    onTapIconLeft?: any;
+    onTapIconRight?: any;
     title?: string
 }
 
-const TitleScreen: React.FC<TitleScreenProps> = ({ navigation, iconLeft, iconRight, title, navigationIconLeft, navigationIconRight }) => {
+const TitleScreen: React.FC<TitleScreenProps> = ({ navigation, iconLeft, iconRight, title, onTapIconLeft, onTapIconRight }) => {
     const { handleColor } = useTheme();
 
     return (
@@ -32,7 +32,7 @@ const TitleScreen: React.FC<TitleScreenProps> = ({ navigation, iconLeft, iconRig
             {iconLeft &&
                 <View style={{ width: '10%' }}>
                     <TButton
-                        onPress={() => navigationIconLeft()}
+                        onPress={() => onTapIconLeft()}
                         icon={iconLeft}
                     />
                 </View>
@@ -45,7 +45,7 @@ const TitleScreen: React.FC<TitleScreenProps> = ({ navigation, iconLeft, iconRig
 
                 <View style={{ width: '10%' }}>
                     <TButton
-                        onPress={() => navigationIconRight()}
+                        onPress={() => onTapIconRight()}
                         icon={iconRight}
                     />
                 </View>

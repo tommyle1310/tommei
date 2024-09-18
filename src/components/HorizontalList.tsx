@@ -4,6 +4,8 @@ import TText from './theme/TText';
 import { useTheme } from '../hooks/useTheme';
 import { typeHorizontalList } from '../types/products/listProducts';
 import { ListColors } from '../types/colors/listColors';
+import { listCategories } from '../types/categories/listCategories';
+import { commonStyle } from '../utils/styles/commonStyles';
 
 type HorizontalListProps = {
     selectedId: string;
@@ -50,7 +52,9 @@ const HorizontalList = ({ selectedId, data, type }: HorizontalListProps) => {
                                 padding: 5,
                                 borderColor: '#ccc',
                                 borderRadius: 8,
+                                ...commonStyle.ic
                             }}>
+                                {item.icon}
                                 <TText title={item.title} style={{
                                     fontSize: 16,
                                     color: textColor,

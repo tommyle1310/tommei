@@ -3,7 +3,7 @@ import React from 'react'
 import MainWrapper from '../Wrapper/MainWrapper'
 import TText from '../../components/theme/TText'
 import TButton from '../../components/theme/TButton'
-import { Button, Icon } from '@ui-kitten/components'
+import { Button, Card, Icon, Modal } from '@ui-kitten/components'
 import { commonStyle } from '../../utils/styles/commonStyles'
 import { StackScreenProps } from '@react-navigation/stack'
 import { StackHomeProductList } from '../../navigation/types'
@@ -22,13 +22,16 @@ type Props = StackScreenProps<StackHomeProductList, 'ProductDetails'>;
 
 const ProductDetail: React.FC<Props> = ({ navigation }) => {
     const { handleColor, themeStyle, theme } = useTheme()
+    const [modalAddToCartSuccess, setModalAddToCartSuccess] = React.useState(false);
+
+
     return (
         <MainWrapper style={[styles.container]}>
             <View style={{ gap: 10 }}>
                 <TitleScreen
                     navigation={navigation}
-                    navigationIconLeft={() => navigation.navigate('Home')}
-                    navigationIconRight={() => navigation.navigate('Home')}
+                    onTapIconLeft={() => navigation.navigate('Home')}
+                    onTapIconRight={() => setModalAddToCartSuccess(true)}
                     title={'Product Details'} iconLeft={<Icon fill={handleColor('color-basic-500')}
                         style={[commonStyle.icon]} name='arrow-ios-back-outline' />}
                     iconRight={<Icon fill={handleColor('color-basic-500')}
@@ -49,8 +52,12 @@ const ProductDetail: React.FC<Props> = ({ navigation }) => {
                         <TText title='Select color:' />
                         <HorizontalList type='productExtraOptions' data={[{ id: '1', title: 'S' }, { id: '2', title: 'M' }, { id: '3', title: 'L' }]} selectedId='1' />
                     </View>
-                    <Button appearance='outline' status={theme === 'dark' ? 'control' : 'primary'}>Add to cart</Button>
-                    <TPrimaryBtn onTap={() => { }} title='Purchase' />
+
+
+                    <Button onPress={() => setModalAddToCartSuccess(true)} appearance='outline' status={theme === 'dark' ? 'control' : 'primary'}>Add to cart</Button>
+                    <TPrimaryBtn onTap={() => { navigation.navigate('Checkout') }} title='Purchase' />
+
+
                     <TText style={styles.h3} title={'Product Details'} />
                     <View style={{}}>
                         <Text style={[styles.p, themeStyle]}>
@@ -76,6 +83,14 @@ const ProductDetail: React.FC<Props> = ({ navigation }) => {
                 </View>
 
             </View>
+
+            <Modal visible={modalAddToCartSuccess} style={{}}>
+                <Card disabled={true} style={{ paddingTop: 10, position: 'relative', gap: 10 }}>
+                    <TButton onPress={() => setModalAddToCartSuccess(false)} title={'x'} style={{ position: 'absolute', right: -2, top: -18 }} />
+                    <TText title={'Add To Cart Successfully 😻'} style={{ backgroundColor: 'transparent', marginVertical: 10 }} />
+                    <TPrimaryBtn title='Go to Cart' onTap={() => navigation.navigate('Cart')} />
+                </Card>
+            </Modal>
         </MainWrapper>
     )
 }

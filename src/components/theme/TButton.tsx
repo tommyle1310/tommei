@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Animated } from 'react-native';
 import { IconElement } from '@ui-kitten/components';
 import TText from './TText';
 
-const TButton = ({ icon, style, title, onPress }: { icon?: IconElement, title?: string, style?: object, onPress?: () => void }) => {
+const TButton = ({ icon, style, title, onPress, textStyle }: { icon?: IconElement, title?: string, style?: object, onPress?: () => void, textStyle?: object }) => {
     const [scale] = useState(new Animated.Value(1));
 
     const onPressIn = () => {
@@ -29,7 +29,7 @@ const TButton = ({ icon, style, title, onPress }: { icon?: IconElement, title?: 
         >
             <Animated.View style={{ transform: [{ scale }] }}>
                 {icon && icon}
-                {title && <TText style={{ backgroundColor: 'transparent' }} title={title} />}
+                {title && <TText style={{ backgroundColor: 'transparent', ...textStyle }} title={title} />}
             </Animated.View>
         </Pressable>
     );
