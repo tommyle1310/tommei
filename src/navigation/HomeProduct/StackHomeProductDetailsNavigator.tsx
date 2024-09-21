@@ -5,6 +5,7 @@ import HomeScreen from "../../screens/HomeScreen";
 import ProductDetails from "../../screens/Products/ProductDetails";
 import CartScreen from "../../screens/CartScreen";
 import CheckoutScreen from "../../screens/CheckoutScreen";
+import ReviewScreen from "../../screens/ReviewScreen";
 
 const Stack = createStackNavigator<StackHomeProductList>();
 
@@ -20,6 +21,11 @@ function HomeProductDetailsNavigator() {
             <Stack.Screen
                 name="ProductDetails"
                 component={ProductDetails}
+                options={{ headerShown: false }}  // Hides the header
+            />
+            <Stack.Screen
+                name="Review"
+                component={ReviewScreen}
                 options={{ headerShown: false }}  // Hides the header
             />
             <Stack.Screen

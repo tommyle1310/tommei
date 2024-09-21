@@ -18,7 +18,8 @@ export type StackHomeProductList = {
     Home: undefined;
     ProductDetails: undefined;
     Checkout: undefined;
-    Cart: undefined
+    Cart: undefined;
+    Review: undefined;
 };
 
 export type StackCartCheckoutPurchaseList = {

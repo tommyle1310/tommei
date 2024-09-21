@@ -69,11 +69,11 @@ const ProductDetail: React.FC<Props> = ({ navigation }) => {
                             </Pressable>
                         </Text>
                     </View>
-                    <View style={[commonStyle.ic, { gap: 5 }]}>
+                    <Pressable onPress={() => navigation.navigate('Review')} style={[commonStyle.ic, { gap: 5 }]}>
                         <Icon style={commonStyle.smallIcon} name='star' fill={handleColor('color-warning-default')} />
                         <TText style={{ fontWeight: 600, fontSize: 12, textDecorationLine: 'underline' }} title={`${4.0}/5`} />
                         <TText style={{ fontSize: 12, color: handleColor('color-basic-600') }} title={`(${45} reviews)`} />
-                    </View>
+                    </Pressable>
                     <View style={{ flexWrap: 'wrap', ...commonStyle.ic, gap: 20 }}>
                         <FeatureProduct icon={<Icon style={commonStyle.icon} name='car-outline' fill='#888' />} subTitle='Free delivery' title='1-2 day' />
                         <FeatureProduct icon={<Icon style={commonStyle.icon} name='cube-outline' fill='#888' />} subTitle='Today' title='In Stock' />
