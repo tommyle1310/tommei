@@ -18,6 +18,7 @@ export type StackHomeProductList = {
     Home: undefined;
     ProductDetails: undefined;
     Checkout: undefined;
+    Address: undefined;
     Cart: undefined;
     Review: undefined;
 };
@@ -25,6 +26,7 @@ export type StackHomeProductList = {
 export type StackCartCheckoutPurchaseList = {
     Cart: undefined;
     Address: undefined;
+    AddressScreen: undefined;
     Checkout: undefined;
     Purchase: undefined;
 };

@@ -19,6 +19,9 @@ export const commonStyle = StyleSheet.create({
     smallP: {
         fontSize: 12
     },
+    bgNone: {
+        backgroundColor: 'transparent'
+    },
     icon: {
         width: 28,
         height: 28,

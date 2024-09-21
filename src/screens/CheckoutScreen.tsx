@@ -38,7 +38,7 @@ const CheckoutScreen: React.FC<Props> = ({ navigation }) => {
                 <View style={{ borderTopWidth: 1, paddingVertical: 10, borderColor: handleColor('color-basic-600') }}>
                     <View style={[commonStyle.jb, commonStyle.ic]}>
                         <TText style={titleSection} title='Delivery Address' />
-                        <TButton textStyle={{ color: handleColor('color-warning-default'), textDecorationLine: 'underline' }} title='Change' onPress={() => { }}></TButton>
+                        <TButton textStyle={{ color: handleColor('color-warning-default'), textDecorationLine: 'underline' }} title='Change' onPress={() => { navigation.navigate('Address') }}></TButton>
                     </View>
                     <View style={[commonStyle.ic, { gap: 10 }]}>
                         <Icon style={commonStyle.smallIcon} name='pin-outline' fill={handleColor('color-basic-600')} />

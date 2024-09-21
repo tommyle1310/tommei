@@ -61,7 +61,7 @@ const CommentSection = () => {
                 }}>
                     <TText style={{
                         backgroundColor: 'transparent',
-                        color: '#fff',
+                        // color: '#fff',
                         flex: 1,
                         fontSize: 12, // adjust font size if needed
                     }}

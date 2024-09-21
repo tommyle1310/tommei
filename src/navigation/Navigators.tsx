@@ -11,7 +11,7 @@ import Signup from '../screens/Auth/Signup';
 import { StackParamList, BottomTabParamList, TopTabParamList } from '../navigation/types';
 import { DrawerNavigator } from './Drawer';
 import HomeProductDetailsNavigator from './HomeProduct/StackHomeProductDetailsNavigator';
-import CartCheckoutPurchaseNavigator from './StackCartCheckoutPurhcaseNavigator';
+import CartCheckoutPurchaseNavigator from './StackCartCheckoutPurchaseNavigator';
 import SettingsScreen from '../screens/SettingsScreen';
 
 
