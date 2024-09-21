@@ -21,7 +21,7 @@ const AddressScreen: React.FC<Props> = ({ navigation }) => {
             <TitleScreen
                 navigation={navigation}
                 onTapIconLeft={() => navigation.pop()}
-                onTapIconRight={() => navigation.navigate('Cart')}
+                onTapIconRight={() => navigation.navigate('Notifications')}
                 title='Address'
                 iconLeft={<Icon fill={handleColor('color-basic-600')}
                     style={[commonStyle.icon]}
@@ -48,7 +48,7 @@ const AddressScreen: React.FC<Props> = ({ navigation }) => {
                         </Radio>
                     </Pressable>
                 ))}
-                <Button style={{ marginVertical: 10 }} appearance='outline' status='control' accessoryLeft={<Icon style={[commonStyle.smallIcon]} fill={handleColor('color-control-default')} name='plus-outline' />}>Add New Address</Button>
+                <Button style={{ marginVertical: 10 }} appearance='outline' status={theme === 'dark' ? 'control' : 'basic'} accessoryLeft={<Icon style={[commonStyle.smallIcon]} fill={theme === 'dark' ? handleColor('color-control-default') : handleColor('color-basic-600')} name='plus-outline' />}>Add New Address</Button>
             </View>
         </MainWrapper>
     )

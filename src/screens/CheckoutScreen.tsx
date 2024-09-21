@@ -27,13 +27,10 @@ const CheckoutScreen: React.FC<Props> = ({ navigation }) => {
                 <TitleScreen
                     navigation={navigation}
                     onTapIconLeft={() => navigation.pop()}
-                    onTapIconRight={() => navigation.navigate('Cart')}
                     title='Checkout'
                     iconLeft={<Icon fill={handleColor('color-basic-600')}
                         style={[commonStyle.icon]}
                         name='arrow-ios-back-outline' />}
-                    iconRight={<Icon fill={handleColor('color-basic-600')}
-                        style={[commonStyle.icon]} name='bell-outline' />}
                 />
                 <View style={{ borderTopWidth: 1, paddingVertical: 10, borderColor: handleColor('color-basic-600') }}>
                     <View style={[commonStyle.jb, commonStyle.ic]}>

@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeScreen from '../screens/HomeScreen';
-import DetailsScreen from '../screens/DetailsScreen';
+import NotificationsScreen from '../screens/NotificationsScreen';
 import Login from '../screens/Auth/Login';
 import Signup from '../screens/Auth/Signup';
 
@@ -23,7 +23,7 @@ function TopTabs() {
     return (
         <TopTab.Navigator>
             <TopTab.Screen name="TopTab1" component={HomeScreen} />
-            <TopTab.Screen name="TopTab2" component={DetailsScreen} />
+            {/* <TopTab.Screen name="TopTab2" component={DetailsScreen} /> */}
         </TopTab.Navigator>
     );
 }
@@ -32,7 +32,7 @@ function BottomTabs() {
     return (
         <BottomTab.Navigator>
             <BottomTab.Screen options={{ headerShown: false }} name="BrandIcon" component={HomeProductDetailsNavigator} />
-            <BottomTab.Screen options={{ headerShown: false }} name="Details" component={DetailsScreen} />
+            <BottomTab.Screen options={{ headerShown: false }} name="Notifications" component={NotificationsScreen} />
             <BottomTab.Screen options={{ headerShown: false }} name="CartCheckoutPurchase" component={CartCheckoutPurchaseNavigator} />
             <BottomTab.Screen options={{ headerShown: false }} name="Settings" component={SettingsScreen} />
         </BottomTab.Navigator>

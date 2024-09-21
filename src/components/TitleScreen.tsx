@@ -28,7 +28,7 @@ const TitleScreen: React.FC<TitleScreenProps> = ({ navigation, iconLeft, iconRig
     const { handleColor } = useTheme();
 
     return (
-        <View style={[commonStyle.jb, commonStyle.ic]}>
+        <View style={[iconRight ? commonStyle.jb : null, commonStyle.ic]}>
             {iconLeft &&
                 <View style={{ width: '10%' }}>
                     <TButton
@@ -39,7 +39,7 @@ const TitleScreen: React.FC<TitleScreenProps> = ({ navigation, iconLeft, iconRig
             }
             {title &&
 
-                <TText title={title} style={commonStyle.h1} />
+                <TText title={title} style={[commonStyle.h1, { fontSize: 24 }]} />
             }
             {iconRight &&
 

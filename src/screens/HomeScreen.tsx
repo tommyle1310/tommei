@@ -35,10 +35,13 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
             <View style={{ gap: 20, flexDirection: 'column', flex: 1, }}>
                 <View style={[commonStyle.jb]}>
                     <TText title='Discover' style={{ ...commonStyle.headerTitle, fontWeight: 700 }} />
-                    <Icon
-                        style={commonStyle.icon}
-                        fill={handleColor('color-primary-default')}
-                        name='bell-outline'
+                    <TButton
+                        icon={<Icon
+                            style={commonStyle.icon}
+                            fill={handleColor('color-primary-default')}
+                            name='bell-outline'
+                        />}
+                        onPress={() => navigation.navigate('Notifications')}
                     />
                 </View>
 

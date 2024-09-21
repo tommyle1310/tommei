@@ -11,6 +11,7 @@ import TButton from '../components/theme/TButton';
 import TPrimaryBtn from '../components/theme/TPrimaryBtn';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StackCartCheckoutPurchaseList } from '../navigation/types';
+import TitleScreen from '../components/TitleScreen';
 
 type Props = StackScreenProps<StackCartCheckoutPurchaseList, 'Cart'>;
 
@@ -22,14 +23,13 @@ const CartScreen: React.FC<Props> = ({ navigation }) => {
     return (
         <ScrollView>
             <MainWrapper style={{ gap: 10 }}>
-                <View style={[{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }, commonStyle.jb, commonStyle.ic]}>
-                    <TText style={[commonStyle.headerTitle, { fontWeight: '700' }]} title='My Cart' />
-                    <Icon
-                        style={commonStyle.icon}
-                        fill={handleColor('color-primary-default')}
-                        name='bell-outline'
-                    />
-                </View>
+                <TitleScreen title='My Cart' navigation={navigation} iconRight={<Icon
+                    style={commonStyle.icon}
+                    fill={handleColor('color-primary-default')}
+                    name='bell-outline'
+                />}
+                    onTapIconRight={() => navigation.navigate('Notifications')}
+                />
                 <View style={{ flexDirection: 'column', gap: 10 }}>
                     <CartItem />
                     <CartItem />
